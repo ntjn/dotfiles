@@ -185,7 +185,7 @@ bar {
 	#font pango: System San Francisco Display, FontAwesome 11
 	#status_command /home/$USER/.config/i3/i3bar-wrapper.sh
 	font pango:DejaVu Sans Mono, FontAwesome 12
-	status_command /home/ntj/git/bumblebee-status/bumblebee-status \
+	status_command bumblebee-status \
 					-m memory load amixer brightness datetime battery \
 					-t greyish-powerline \
 					-p datetime.format="%Y-%m-%d %H:%M:%S"

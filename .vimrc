@@ -20,7 +20,7 @@ vnoremap < <gv
 vnoremap > >gv
 set tabstop=4
 set shiftwidth=4
-"set expandtab
+set expandtab
 set autoindent
 
 "Custom maps
@@ -98,14 +98,14 @@ nnoremap ,html :read ~/.vim/.skel/.html<CR>
 "___________________________________________________________________
 ":TOhtml        - export file as html with colors and numbers
 
-"Needed by vim presentation
+"Required by vim presentation
 "___________________________________________________________________
 "autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'make']
 
 ":redir @* | set guifont | redir END
 
-colorscheme unique
+"colorscheme ntj
 
 "set viminfo+=n~/.vim/viminfo
 
