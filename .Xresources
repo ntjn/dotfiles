@@ -14,17 +14,11 @@ xterm*faceSize4: 16
 ! VT font menu: Huge
 xterm*faceSize5: 22
 
-! magic
-! xterm*faceName: default
-! xterm*cursorBlink: true
-! xterm*cursorUnderLine: true
-
 xterm*selectToClipboard: true
 XTerm*VT100.translations: #override : select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 xterm*VT100.metaSendsEscape: true
 
-! xterm*utf8: 2
-! XTerm.scaleWidth: 5
+xterm*utf8: 2
 
 xterm*foreground: rgb:FF/FF/FF
 xterm*background: rgb:00/00/00
