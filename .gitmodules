@@ -1,0 +1,9 @@
+[submodule ".vim/bundle/Jenkinsfile-vim-syntax"]
+	path = .vim/bundle/Jenkinsfile-vim-syntax
+	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git
+[submodule ".vim/bundle/kotlin-vim"]
+	path = .vim/bundle/kotlin-vim
+	url = https://github.com/udalov/kotlin-vim.git
+[submodule ".vim/bundle/vinfo"]
+	path = .vim/bundle/vinfo
+	url = https://github.com/VundleVim/Vundle.vim.git

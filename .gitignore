@@ -1,0 +1,8 @@
+!/.config
+/.config/*
+!/.config/conky
+!/.config/i3
+!/.config/mc
+!/.config/ranger
+
+*.pyc

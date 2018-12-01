@@ -1,0 +1,50 @@
+# General settings
+ncmpcpp_directory = ~/.ncmpcpp
+
+mpd_host = localhost
+mpd_port = 6600
+mpd_music_dir = /media/data/music
+
+audio_output {
+       type            "fifo"
+       name            "Visualizer feed"
+       path            "/tmp/mpd.fifo"
+       format          "44100:16:2"
+}
+
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "Visualizer feed"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+
+search_engine_default_search_mode = 1
+
+# Formats
+search_engine_display_mode = "columns" (classic/columns)
+song_columns_list_format = "$L(9)[cyan_black]{l} (20)[magenta]{a} (30)[cyan_black]{b}$R(20)[magenta]{t}"
+
+# Colors
+colors_enabled = yes
+
+color1 = black
+color2 = cyan
+
+empty_tag_color = cyan_black
+header_window_color = cyan_black
+volume_color = cyan_black 
+
+state_line_color = cyan_black
+state_flags_color = cyan_black
+
+main_window_color = cyan_black
+main_window_highlight_color = cyan
+
+progressbar_color = cyan_black
+progressbar_elapsed_color = cyan_black
+
+statusbar_color = cyan_black
+alternative_ui_separator_color = black
+active_column_color = cyan_black
+window_border_color = cyan_black
+active_window_border = cyan_black 
+

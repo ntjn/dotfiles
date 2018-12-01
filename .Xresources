@@ -1,0 +1,40 @@
+xterm*faceName: System San Francisco:size=12:antialias=true
+xterm*font: 11x13
+! xterm*foreground: rgb:FF/FF/FF
+xterm*foreground: rgb:00/00/00
+! xterm*background: rgb:00/00/00
+xterm*background: rgb:FF/FF/FF
+xterm*selectToClipboard: true
+xterm*utf8: 2
+XTerm*VT100.translations: #override : select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+!XTerm*VT100.translations: #override : insert-selection(PRIMARY,PASTEBOARD,CLIPBOARD,CUT_BUFFER0) \n \
+! : select-end(PRIMARY,PASTEBOARD,CLIPBOARD, CUT_BUFFER0)
+xterm*VT100.metaSendsEscape: true
+
+
+
+*color0:  #000000
+*color8:  #555753
+! DarkRed + Red
+*color1:  #ff6565
+*color9:  #ff8d8d
+! DarkGreen + Green
+*color2:  #93d44f
+*color10: #2d8f3d
+! DarkYellow + Yellow
+*color3:  #eab93d
+*color11: #f555753fc123
+! DarkBlue + Blue
+*color4:  #204a87
+*color12: #3465a4
+! DarkMagenta + Magenta
+*color5:  #361597
+*color13: #f57900
+!DarkCyan + Cyan (both not tango)
+*color6:  #89b6e2
+*color14: #46a4ff
+! LightGrey + White
+*color7:  #cccccc
+*color15: #ffffff
+
+
