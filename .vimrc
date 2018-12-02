@@ -22,8 +22,6 @@ set expandtab
 set autoindent
 
 "Custom maps
-map ö <C-]>
-map ü <C-o>
 map <Space> /
 map í ?
 map <C-h> :wincmd h<CR>
@@ -32,7 +30,12 @@ map <C-k> <C-y>k
 map <C-l> :wincmd l<CR>
 map ó :call Rmprefix()<CR>
 map ú :call Rmsuffix()<CR>
-map ű :!ctags -R .
+map ű :!ctags -R .<CR>
+map É <C-w><C-]>
+map Á <C-]>
+map ö :exec "pop " .  (gettagstack()["curidx"] - 1)<CR>
+map ü <C-t>
+map Ü :call MoveWindow()<CR>
 
 "Folding
 set foldmethod=marker
@@ -71,7 +74,6 @@ nnoremap ,html :read ~/.vim/.skel/.html<CR>
 execute pathogen#infect()
 filetype plugin indent on
 
-"Helpers
 "___________________________________________________________________
 "Substrings of commands
 
@@ -92,11 +94,29 @@ function Keepsuffix()
     execute 's/\v[ \t]*[^ ]*[ \t]*([-]+[a-zA-Z-_.]*[ ]*)*([^| \t]*).*/\2/'
 endfunction
 
-"Auto open nerdtree bar
-function OpenTree()
-    NERDTree
+"Close the current window and open it as a tab
+function MoveWindow()
+    let w = bufname("%")
+    q
+    exec ":tabe " . w
+endfunction
+
+"Skip comment at the top of the file
+function SkipComments()
+    while getline(".")[:1] == "//"
+        execute ":normal \<C-j>"
+    endwhile
+endfunction
+
+"Config only applied to nerdtree bar
+function ConfigNerdtree()
     set relativenumber
     set number
+endfunction
+
+function OpenTree()
+    NERDTree
+    call ConfigNerdtree()
 endfunction
 
 function OpenTreeChangingWindow()
@@ -104,6 +124,12 @@ function OpenTreeChangingWindow()
     wincmd w
 endfunction
 
-autocmd VimEnter * call OpenTree()
-autocmd VimEnter *rc,*.conf,*.sh,*.py,*.h,*.c,*.cc,*.cpp,*.hs,*.kt,*.java call OpenTreeChangingWindow()
+"Auto open nerdtree bar
+au VimEnter * call OpenTree()
+au VimEnter *rc,*.conf,*.sh,*.py,*.h,*.c,*.cc,*.cpp,*.hs,*.kt,*.java call OpenTreeChangingWindow()
 
+"Auto close nerdtree
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"Skip comments
+au BufRead * call SkipComments()
