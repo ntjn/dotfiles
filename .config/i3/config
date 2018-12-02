@@ -233,11 +233,7 @@ gaps outer 30
 new_window pixel 0
 
 # Background
-#exec_always feh --bg-scale /home/$USER/downloads/daily1w2_by_elleneth-dai7tfx.jpg
-#exec_always feh --bg-scale /home/$USER/pictures/her_true_colors_by_nanomortis-d99setb.png 
-exec_always feh --bg-scale /home/$USER/pictures/finnland_pictures_1_by_zheroxian.jpg
-#exec_always feh --bg-scale /home/$USER/pictures/iceland_lake_sunset_2_by_leighd-d32qvzx.jpg
-#exec_always feh --bg-scale /home/$USER/drawing/tobeornot.jpg
+exec_always feh --bg-scale /home/$USER/pictures/unknown_germany_pt__ccxciv_by_thechosenpesssimist_dbqz6ab-fullview.jpg
 
 # Touchpad tap click
 exec synclient TapButton1=1

@@ -8,10 +8,11 @@ HOME=$(
         echo '/root'
 )
 
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+shopt -s extglob
+bind Space:magic-space
 
 alias ls='ls --color=auto'
 alias vi='vim -p'
@@ -23,8 +24,6 @@ else
 	PS1="\342\224\214[${GREEN}\[\e[0;35;49m\u\e[0m${NC}] [\h]$ps1_informer:\[\e[0;35;49m\]\w\[\e[0m \n\342\224\224>"
 fi
 
-
-# Functions for convinience
 function e() {
     [ -z $1 ] && (
         printf "\t%s\n" "Error: e is for running commands in background." >&2 && \
@@ -41,11 +40,6 @@ function l() {
                 ls -lah "$@"\
         )
 }
-
-# Enable extended globbing
-shopt -s extglob
-
-bind Space:magic-space
 
 c() { gcc $1 -o `echo $1|sed -r 's/([^\.]*).*/\1.bin/'`; }
 
