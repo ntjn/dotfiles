@@ -6,16 +6,14 @@ set relativenumber
 set number
 set showcmd
 set paste
-"set omnifunc=syntaxcomplete#Complete
-"set complete=.,w,b,u,t,i,kspell
 
 let mapleader=','
 
-"Tab settings
+"Tab config
 map é :tabn<CR>
 map á :tabp<CR>
 
-"Indent settings
+"Indent config
 vnoremap < <gv
 vnoremap > >gv
 set tabstop=4
@@ -26,36 +24,15 @@ set autoindent
 "Custom maps
 map ö <C-]>
 map ü <C-o>
-map <C-j> <C-e>j
-map <C-k> <C-y>k
-
-"Search
 map <Space> /
 map í ?
-
-"Delete prefix
-map ó :s/\v[^ ]*[ ]([-][a-zA-Z-_.]*[ ]*)*[\|]?//<CR>
-"Delete suffix
-map ü :s/\v([a-zA-Z.-_]*).*/\1/<CR>
-
-function Rmprefix()
-	execute 's/\v[^ ]*[ ]([-][a-zA-Z-_.]*[ ]*)*[\|]?//'
-endfunction
-
-function Rmsuffix()
-	execute 's/\v([a-zA-Z.-_/]*).*/\1/'
-endfunction
-
-function Keepinfix()
-	execute 's/\v[^ ]*[ ]([-][a-zA-Z-_.]*[ ]*)*[\|]?//'
-	execute 's/\v([a-zA-Z.-_/]*).*/\1/'
-endfunction
-
-"map ó /\"<CR>lv/"<CR>hxi
-"map ó /\'<CR>lv/'<CR>hxi
-
-"function Insquote()
-"endfunction
+map <C-h> :wincmd h<CR>
+map <C-j> <C-e>j
+map <C-k> <C-y>k
+map <C-l> :wincmd l<CR>
+map ó :call Rmprefix()<CR>
+map ú :call Rmsuffix()<CR>
+map ű :!ctags -R .
 
 "Folding
 set foldmethod=marker
@@ -65,20 +42,20 @@ set foldmethod=marker
 
 "Skeletons
 "___________________________________________________________________
-au BufNewFile *.html	0r ~/.vim/.skel/.html
-	\ | :normal G
-au BufNewFile *.sh	0r ~/.vim/.skel/.sh
-	\ | :normal G
-au BufNewFile *.py	0r ~/.vim/.skel/.py
-	\ | :normal G
-au BufNewFile *.c	0r ~/.vim/.skel/.c
-	\ | :normal 5G
-au BufNewFile *.cpp	0r ~/.vim/.skel/.cpp
-	\ | :normal 5G
-au BufNewFile *.java	0r ~/.vim/.skel/.java
-	\ | :normal 5G
-au BufNewFile *.hs	0r ~/.vim/.skel/.hs
-	\ | :normal G
+au BufNewFile *.html    0r ~/.vim/.skel/.html
+    \ | :normal G
+au BufNewFile *.sh      0r ~/.vim/.skel/.sh
+    \ | :normal G
+au BufNewFile *.py      0r ~/.vim/.skel/.py
+    \ | :normal G
+au BufNewFile *.c       0r ~/.vim/.skel/.c
+    \ | :normal 5G
+au BufNewFile *.cpp     0r ~/.vim/.skel/.cpp
+    \ | :normal 5G
+au BufNewFile *.java    0r ~/.vim/.skel/.java
+    \ | :normal 5G
+au BufNewFile *.hs      0r ~/.vim/.skel/.hs
+    \ | :normal G
 
 "YAML indent
 "___________________________________________________________________
@@ -91,21 +68,42 @@ nnoremap ,html :read ~/.vim/.skel/.html<CR>
 
 "Plugins
 "___________________________________________________________________
-"execute pathogen#infect()
-"filetype plugin indent on
+execute pathogen#infect()
+filetype plugin indent on
 
-"Magic
+"Helpers
 "___________________________________________________________________
-":TOhtml        - export file as html with colors and numbers
+"Substrings of commands
 
-"Required by vim presentation
-"___________________________________________________________________
-"autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-"let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'make']
+"Remove prefix of a command
+"  where prefix is the name of the command with its flags
+function Rmprefix()
+    execute 's/\v[ \t]*[^ ]*[ \t]*([-]+[a-zA-Z-_.]*[ ]*)*[\|]?//'
+endfunction
 
-":redir @* | set guifont | redir END
+"Remove suffix of a line
+"  where suffix is anything after the prefix
+function Rmsuffix()
+    execute 's/\v([ \t]*[^ ]*[ \t]*[-]+[a-zA-Z-_.]*[ ]*).*/\1/'
+endfunction
 
-"colorscheme ntj
+"Keep suffix of a command before pipe
+function Keepsuffix()
+    execute 's/\v[ \t]*[^ ]*[ \t]*([-]+[a-zA-Z-_.]*[ ]*)*([^| \t]*).*/\2/'
+endfunction
 
-"set viminfo+=n~/.vim/viminfo
+"Auto open nerdtree bar
+function OpenTree()
+    NERDTree
+    set relativenumber
+    set number
+endfunction
+
+function OpenTreeChangingWindow()
+    call OpenTree()
+    wincmd w
+endfunction
+
+autocmd VimEnter * call OpenTree()
+autocmd VimEnter *rc,*.conf,*.sh,*.py,*.h,*.c,*.cc,*.cpp,*.hs,*.kt,*.java call OpenTreeChangingWindow()
 
