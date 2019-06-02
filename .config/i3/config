@@ -96,49 +96,40 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1  "
-set $workspace2 "2  " 
-set $workspace3 "3  "
-set $workspace4 "4  "
-set $workspace5 "5  "
-set $workspace6 "6  "
-set $workspace7 "7  "
-set $workspace8 "8  "
-set $workspace9 "9  "
-
+# https://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+odiaeresis workspace 10
+bindsym $mod+odiaeresis workspace number "0"
+bindsym $mod+1 workspace number "1"
+bindsym $mod+2 workspace number "2"
+bindsym $mod+3 workspace number "3"
+bindsym $mod+4 workspace number "4"
+bindsym $mod+5 workspace number "5"
+bindsym $mod+6 workspace number "6"
+bindsym $mod+7 workspace number "7"
+bindsym $mod+8 workspace number "8"
+bindsym $mod+9 workspace number "9"
+bindsym $mod+uacute workspace number "10: tmp"
+bindsym $mod+q workspace "ssh";layout tabbed
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+odiaeresis move container to workspace 10
+bindsym $mod+Shift+odiaeresis move container to workspace number "0";exec /srv/scr/rnws.sh 0
+bindsym $mod+Shift+1 move container to workspace number "1";exec /srv/scr/rnws.sh 1
+bindsym $mod+Shift+2 move container to workspace number "2";exec /srv/scr/rnws.sh 2
+bindsym $mod+Shift+3 move container to workspace number "3";exec /srv/scr/rnws.sh 3
+bindsym $mod+Shift+4 move container to workspace number "4";exec /srv/scr/rnws.sh 4
+bindsym $mod+Shift+5 move container to workspace number "5";exec /srv/scr/rnws.sh 5
+bindsym $mod+Shift+6 move container to workspace number "6";exec /srv/scr/rnws.sh 6
+bindsym $mod+Shift+7 move container to workspace number "7";exec /srv/scr/rnws.sh 7
+bindsym $mod+Shift+8 move container to workspace number "8";exec /srv/scr/rnws.sh 8
+bindsym $mod+Shift+9 move container to workspace number "9";exec /srv/scr/rnws.sh 9
+bindsym $mod+Shift+uacute move container to workspace number "10: tmp";exec /srv/scr/rnws.sh 10
 
 bindsym $mod+eacute workspace next
 bindsym $mod+aacute workspace prev
 
-assign [class="chromium"] $workspace2
 assign [class="Vlc"] $workspace4
-assign [class="Thunar"] $workspace5
 assign [class="Evince"] $workspace6
 assign [class="TexMaker"] $workspace7
-assign [class="Deluge"] $workspace8
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -202,7 +193,7 @@ bar {
 		active_workspace   $base01 $base02    $base03
 		inactive_workspace $base01 $base01    $base03
 		urgent_workspace   $base01 $base01    $base08
-     	}
+    }
 }
 
 bindsym $mod+shift+x exec i3lock
@@ -253,4 +244,6 @@ exec sudo iw dev wlp2s0 del
 exec sudo iw phy phy0 interface add w type managed
 exec sudo iw phy phy0 interface add q type monitor
 exec sudo ip link set w up
-exec sudo wpa_supplicant -iw -c$HOME/wpa.conf -B
+exec sudo wpa_supplicant -iw -c$HOME/wpa/wpa.conf -B
+
+exec sudo rmmod pcspkr
